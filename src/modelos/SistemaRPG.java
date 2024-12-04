@@ -35,4 +35,15 @@ public class SistemaRPG {
     public String getDescricao() {
         return descricao;
     }
+
+    @Override
+    public String toString() {
+        String mensage = """
+                Id_sistema: %d
+                Nome_sistema: %s
+                Tipo_dado: %s
+                Descricao: %s
+                """.formatted(getId_sistema(), getNome_sistema(), getTipo_dado(), getDescricao());
+        return mensage;
+    }
 }

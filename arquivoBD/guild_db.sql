@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Amigo_de(
 	id_amigo INT NOT NULL,
 	PRIMARY KEY (id_user, id_amigo),
 	FOREIGN KEY (id_user) REFERENCES Usuario(id_user),
-	FOREIGN KEY (id_amigo) REFERENCES Usuario(id_user),
+	FOREIGN KEY (id_amigo) REFERENCES Usuario(id_user)
 );
 
 CREATE TABLE IF NOT EXISTS jogador(

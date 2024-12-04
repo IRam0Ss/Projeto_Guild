@@ -14,30 +14,30 @@ public class ControleMestre {
         String inserirUsuario = "INSERT INTO usuario (nome_user, sobrenome, email_user, idade, apelido_no_sistema) VALUES(?,?,?,?,?)";
         String inserirMestre = "INSERT INTO mestre(id_mestre) VALUES(?)";
 
-        PreparedStatement preparedStatement = conexao.prepareStatement(inserirUsuario, Statement.RETURN_GENERATED_KEYS);
+        PreparedStatement stmt = conexao.prepareStatement(inserirUsuario, Statement.RETURN_GENERATED_KEYS);
 
-        preparedStatement.setString(1, mestre.getNome());
-        preparedStatement.setString(2, mestre.getSobrenome());
-        preparedStatement.setString(3, mestre.getEmail());
-        preparedStatement.setInt(4, mestre.getIdade());
-        preparedStatement.setString(5, mestre.getApelido());
+        stmt.setString(1, mestre.getNome());
+        stmt.setString(2, mestre.getSobrenome());
+        stmt.setString(3, mestre.getEmail());
+        stmt.setInt(4, mestre.getIdade());
+        stmt.setString(5, mestre.getApelido());
 
-        preparedStatement.executeUpdate();
+        stmt.executeUpdate();
 
-        ResultSet idGerado = preparedStatement.getGeneratedKeys();
+        ResultSet idGerado = stmt.getGeneratedKeys();
 
         if(idGerado.next()){
             int id_mestre = idGerado.getInt(1);
 
-            preparedStatement = conexao.prepareStatement(inserirMestre);
-            preparedStatement.setInt(1, id_mestre);
+            stmt = conexao.prepareStatement(inserirMestre);
+            stmt.setInt(1, id_mestre);
 
-            preparedStatement.executeUpdate();
+            stmt.executeUpdate();
 
             System.out.println("Mestre cadastrado com sucesso!");
         }
 
-        preparedStatement.close();
+        stmt.close();
         conexao.close();
     }
 
@@ -46,10 +46,10 @@ public class ControleMestre {
 
         String buscarMestre = "SELECT * FROM usuario,mestre WHERE id_mestre = ? AND id_mestre = id_user";
 
-        PreparedStatement preparedStatement = conexao.prepareStatement(buscarMestre);
-        preparedStatement.setInt(1, idMestre);
+        PreparedStatement stmt = conexao.prepareStatement(buscarMestre);
+        stmt.setInt(1, idMestre);
 
-        ResultSet resultado = preparedStatement.executeQuery();
+        ResultSet resultado = stmt.executeQuery();
 
         Mestre novoMestre;
         if(resultado.next()){
@@ -63,12 +63,12 @@ public class ControleMestre {
             novoMestre = new Mestre(id_user, username, sobrenome, email_user, idade, apelido_no_sistema);
         }else {
             System.out.println("id nao encontrado");
-            preparedStatement.close();
+            stmt.close();
             conexao.close();
             return null;
         }
 
-        preparedStatement.close();
+        stmt.close();
         conexao.close();
 
         return novoMestre;
@@ -110,13 +110,13 @@ public class ControleMestre {
 
         String removerMestre = "DELETE FROM mestre WHERE id_mestre = ?";
 
-        PreparedStatement preparedStatement = conexao.prepareStatement(removerMestre);
-        preparedStatement.setInt(1, mestre.getId_mestre());
+        PreparedStatement stmt = conexao.prepareStatement(removerMestre);
+        stmt.setInt(1, mestre.getId_mestre());
 
-        int linhasRemovidas = preparedStatement.executeUpdate();
+        int linhasRemovidas = stmt.executeUpdate();
         System.out.println("linhas removidas = " + linhasRemovidas);
 
-        preparedStatement.close();
+        stmt.close();
         conexao.close();
     }
 
