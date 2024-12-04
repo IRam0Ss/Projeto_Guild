@@ -1,5 +1,6 @@
 import controles.*;
 import modelos.Mesa;
+import relacoes.AmigoDe;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -36,8 +37,10 @@ public class Main {
         //Mesa mesa = new Mesa("mesaTeste", "mesa de teste do sistema", mestre.getId_mestre(), sistema.getId_sistema());
 
         //ControleMesa.cadastrarMesa(mesa);
-        Mesa mesa = ControleMesa.buscarMesaId(1);
-        ControleMesa.removerMesa(mesa);
+        //Mesa mesa = ControleMesa.buscarMesaId(1);
+        //ControleMesa.removerMesa(mesa);
+
+        AmigoDe.criarAmizade(ControleUsuario.buscarUsuarioApelido("mestreArrombado"), ControleUsuario.buscarUsuarioApelido("cenouraG"));
 
     }
 }
