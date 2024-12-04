@@ -85,7 +85,7 @@ public class ControleJogador {
         ResultSet resultado = stmt.executeQuery();
         Jogador novoJogador;
         if (resultado.next()) {
-            Integer id_user = resultado.getInt("id_mestre");
+            Integer id_user = resultado.getInt("id_jogador");
             String username = resultado.getString("nome_user");
             String sobrenome = resultado.getString("sobrenome");
             String email_user = resultado.getString("email_user");

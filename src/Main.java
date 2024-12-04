@@ -1,7 +1,7 @@
 import controles.*;
-import modelos.Mesa;
-import modelos.Usuario;
+import modelos.*;
 import relacoes.AmigoDe;
+import relacoes.Participa;
 
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -33,18 +33,27 @@ public class Main {
 
         //ControleSistemaRPG.removerSistema(ControleSistemaRPG.buscarSistemaNome("Ordem Paranormal"));
 
-       // Mestre mestre = ControleMestre.buscarMestreApelido("ehMestre?");
-        //SistemaRPG sistema = ControleSistemaRPG.buscarSistemaNome("D&D");
-        //Mesa mesa = new Mesa("mesaTeste", "mesa de teste do sistema", mestre.getId_mestre(), sistema.getId_sistema());
+        //Mestre mestre = ControleMestre.buscarMestreApelido("mestreArrombado");
+        //SistemaRPG sistema = ControleSistemaRPG.buscarSistemaNome("Ordem Paranormal");
+        //Mesa mesa = new Mesa("Iter", "outro teste ", mestre.getId_mestre(), sistema.getId_sistema());
 
         //ControleMesa.cadastrarMesa(mesa);
-        //Mesa mesa = ControleMesa.buscarMesaId(1);
+        Mesa mesa = ControleMesa.buscarMesaId(2);
         //ControleMesa.removerMesa(mesa);
 
         //AmigoDe.criarAmizade(ControleUsuario.buscarUsuarioApelido("mestreArrombado"), ControleUsuario.buscarUsuarioApelido("ehMestre?"));
 
-        Usuario testeUser1 = ControleUsuario.buscarUsuarioApelido("cenouraG");
-        Usuario testeUser2 = ControleUsuario.buscarUsuarioApelido("mestreArrombado");
-        AmigoDe.removerAmizade(testeUser2,testeUser1);
+        //Usuario testeUser1 = ControleUsuario.buscarUsuarioApelido("cenouraG");
+        //Usuario testeUser2 = ControleUsuario.buscarUsuarioApelido("mestreArrombado");
+        //AmigoDe.removerAmizade(testeUser2,testeUser1);
+
+        //Jogador novoJogador = new Jogador("Luan", "Alves", "luanzin@gmail.com", 21, "LuanGamePlays");
+        //ControleJogador.cadastrarJogador(novoJogador);
+        Jogador jogador = ControleJogador.buscarJogadorApelido("LuanGamePlays");
+        //Participa.participar(jogador, mesa);
+
+        //Participa.removerParticipacao(ControleJogador.buscarJogadorApelido("cenouraG"),mesa);
+
+        System.out.println(Participa.mesasQueParticipa(jogador));
     }
 }
