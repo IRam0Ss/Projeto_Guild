@@ -12,20 +12,20 @@ CREATE TABLE IF NOT EXISTS Amigo_de(
 	id_user INT,
 	id_amigo INT NOT NULL,
 	PRIMARY KEY (id_user, id_amigo),
-	FOREIGN KEY (id_user) REFERENCES Usuario(id_user),
-	FOREIGN KEY (id_amigo) REFERENCES Usuario(id_user)
+	FOREIGN KEY (id_user) REFERENCES Usuario(id_user) ON DELETE CASCADE ,
+	FOREIGN KEY (id_amigo) REFERENCES Usuario(id_user) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS jogador(
 	id_jogador INT NOT NULL,
 	PRIMARY KEY (id_jogador),
-	FOREIGN KEY (id_jogador) REFERENCES Usuario(id_user)
+	FOREIGN KEY (id_jogador) REFERENCES Usuario(id_user) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Mestre (
 	id_mestre INT NOT NULL,
 	PRIMARY KEY (id_mestre),
-	FOREIGN KEY (id_mestre) REFERENCES Usuario(id_user)
+	FOREIGN KEY (id_mestre) REFERENCES Usuario(id_user) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Sistema_RPG (

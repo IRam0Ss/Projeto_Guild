@@ -12,48 +12,91 @@ public class Main {
 
         Scanner input = new Scanner(System.in);
 
-        int userChoice;
+        int opcaoUsuario=0;
 
-        //ControleJogador.removerJogador(ControleJogador.buscarJogadorId(7));
-        //ControleUsuario.removerUsuario(ControleUsuario.buscarUsuarioId(6));
+        do{
+            System.out.println("----- ----- ----- MENU ----- ----- -----");
+            System.out.println("1. Menu de Usuario (cadastro, remocao, consultas)");
+            System.out.println("2. Menu de Mesas (cadastro, remocao, consultas)");
+            System.out.println("3. Menu de Sistemas (cadastro, remocao, consultas)");
+            System.out.println("4. Menu de Relacoes (amizade entre usuarios, e participacao de mesas)");
+            System.out.println("5. Menu de consultas do BD");
+            System.out.println("");
+            System.out.println("0. Sair");
+            System.out.println("----- ----- ----- ----- ----- ----- -----");
 
-        //ControleJogador.cadastrarJogador(new Jogador("Iury", "Ramos", "tesste@teste", 20,"cenouraGam"));
+            opcaoUsuario = input.nextInt();
+            int escolhaInterna = 0;
+            switch (opcaoUsuario){
+                case 1:
+                    System.out.println("----- ----- ----- MENU USUARIO ----- ----- -----");
+                    System.out.println("1. Cadastrar Usuario");
+                    System.out.println("2. Remover Usuario");
+                    System.out.println("3. Consultar Usuario");
+                    System.out.println("----- ----- ----- ----- ----- ----- ----- -----");
+                    opcaoUsuario = input.nextInt();
+                    switch (opcaoUsuario) {
+                        case 1:
+                            System.out.println("----- ----- Cadastro ----- -----");
+                            System.out.print("Digite o nome do usuario: ");
+                            String nome = input.next();
+                            System.out.print("Digite o sobrenome do usuario: ");
+                            String sobrenome = input.next();
+                            System.out.print("Digite o email do usuario: ");
+                            String email = input.next();
+                            System.out.print("Digite a idade do usuario: ");
+                            int idade = input.nextInt();
+                            System.out.print("Digite um apelido de usuario: ");
+                            String apelido = input.next();
 
-       // ControleMestre.cadastrarMestre(new Mestre("Patrique", "Rodrigues", "rodrigues@teste.com", 19, "mestreArrombado"));
-       // ControleMestre.cadastrarMestre(new Mestre("Lucas", "Chaves", "chaves@teste.com", 19, "ehMestre?"));
-       // ControleMestre.cadastrarMestre(new Mestre("Rafa", "Pinto", "pinto@teste.com", 19, "cadeMnM"));
+                            while (escolhaInterna != 1 || escolhaInterna != 2){
+                                System.out.println("Escolha o tipo de usuario: \n1.Jogador      2.Mestre");
+                                escolhaInterna = input.nextInt();
+                                if (escolhaInterna == 1) {
+                                    Jogador novoJogador = new Jogador(nome, sobrenome, email, idade, apelido);
+                                    ControleJogador.cadastrarJogador(novoJogador);
+                                    break;
+                                } else if (escolhaInterna == 2) {
+                                    Mestre novoMestre = new Mestre(nome, sobrenome, email, idade, apelido);
+                                    ControleMestre.cadastrarMestre(novoMestre);
+                                    break;
+                                } else {
+                                    System.out.println("Opcao invalida tente novamente! \n");
+                                }
+                            }
+                            break;
+                        case 2:
+                            System.out.println("----- ----- Remocao ----- -----");
 
-        //System.out.println(ControleMestre.buscarMestreApelido("mestreArrombado"));
+                            while (escolhaInterna != 1 || escolhaInterna != 2){
+                                System.out.println("Escolha a opcao de remocao: \n1.Remocao pelo id_usuario:      2.Remocao pelo apelido do usuario");
+                                escolhaInterna = input.nextInt();
+                                if (escolhaInterna == 1) {
+                                    System.out.print("Digite o id do usuario: ");
+                                    int idEscolhido = input.nextInt();
+                                    Usuario removido = ControleUsuario.buscarUsuarioId(idEscolhido);
+                                    ControleUsuario.removerUsuario(removido);
+                                    break;
 
-        //ControleMestre.removerMestre(ControleMestre.buscarMestreId(10));
-        //ControleUsuario.removerUsuario(ControleUsuario.buscarUsuarioNome("Lucas").getFirst());
+                                } else if (escolhaInterna == 2) {
+                                    System.out.print("Digite o apelido do usuario: ");
+                                    String apelidoUsuario = input.next();
+                                    Usuario removido = ControleUsuario.buscarUsuarioApelido(apelidoUsuario);
+                                    ControleUsuario.removerUsuario(removido);
+                                    break;
+                                } else {
+                                    System.out.println("Opcao invalida tente novamente! \n");
+                                }
+                            }
+                            break;
 
-        //ControleSistemaRPG.cadastrarSistema(new SistemaRPG("D&D", "d20", "Sistema de alta fantasia medieval"));
-        //ControleSistemaRPG.cadastrarSistema(new SistemaRPG("Ordem Paranormal", "d20", "Sistema de fantasia moderno, com ambientacao de terror"));
+                        default:
+                            System.out.println("Opcao invalida tente novamente! \n");
+                    }
 
-        //ControleSistemaRPG.removerSistema(ControleSistemaRPG.buscarSistemaNome("Ordem Paranormal"));
+            }
 
-        //Mestre mestre = ControleMestre.buscarMestreApelido("mestreArrombado");
-        //SistemaRPG sistema = ControleSistemaRPG.buscarSistemaNome("Ordem Paranormal");
-        //Mesa mesa = new Mesa("Iter", "outro teste ", mestre.getId_mestre(), sistema.getId_sistema());
+        }while (opcaoUsuario != 0);
 
-        //ControleMesa.cadastrarMesa(mesa);
-        Mesa mesa = ControleMesa.buscarMesaId(2);
-        //ControleMesa.removerMesa(mesa);
-
-        //AmigoDe.criarAmizade(ControleUsuario.buscarUsuarioApelido("mestreArrombado"), ControleUsuario.buscarUsuarioApelido("ehMestre?"));
-
-        //Usuario testeUser1 = ControleUsuario.buscarUsuarioApelido("cenouraG");
-        //Usuario testeUser2 = ControleUsuario.buscarUsuarioApelido("mestreArrombado");
-        //AmigoDe.removerAmizade(testeUser2,testeUser1);
-
-        //Jogador novoJogador = new Jogador("Luan", "Alves", "luanzin@gmail.com", 21, "LuanGamePlays");
-        //ControleJogador.cadastrarJogador(novoJogador);
-        Jogador jogador = ControleJogador.buscarJogadorApelido("LuanGamePlays");
-        //Participa.participar(jogador, mesa);
-
-        //Participa.removerParticipacao(ControleJogador.buscarJogadorApelido("cenouraG"),mesa);
-
-        System.out.println(Participa.mesasQueParticipa(jogador));
     }
 }
