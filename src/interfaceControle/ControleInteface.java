@@ -1,15 +1,10 @@
 package interfaceControle;
 
-import controles.ControleJogador;
-import controles.ControleMesa;
-import controles.ControleMestre;
-import controles.ControleSistemaRPG;
-import modelos.Jogador;
-import modelos.Mesa;
-import modelos.Mestre;
-import modelos.SistemaRPG;
+import controles.*;
+import modelos.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ControleInteface {
 
@@ -50,5 +45,68 @@ public class ControleInteface {
             ControleMesa.cadastrarMesa(novaMesa);
         }
     }
+
+    public void removerUsuario(Integer id) throws SQLException {
+        Usuario usuarioRemovido = ControleUsuario.buscarUsuarioId(id);
+        ControleUsuario.removerUsuario(usuarioRemovido);
+        System.out.println(usuarioRemovido + " removido com sucesso");
+    }
+
+    public void removerSistema(Integer id) throws SQLException {
+        SistemaRPG sistemaRemovido = ControleSistemaRPG.buscarSistemaID(id);
+        ControleSistemaRPG.removerSistema(sistemaRemovido);
+        System.out.println(sistemaRemovido + " removido com sucesso");
+    }
+
+    public void removerMesa(Integer id) throws SQLException {
+        Mesa mesaRemovida = ControleMesa.buscarMesaId(id);
+        ControleMesa.removerMesa(mesaRemovida);
+        System.out.println(mesaRemovida + " removido com sucesso");
+    }
+
+    public void buscarUserNome (String nomeBusca) throws SQLException {
+        ArrayList<Usuario> usuariosComNome = ControleUsuario.buscarUsuarioNome(nomeBusca);
+        System.out.println(usuariosComNome);
+    }
+
+    public void buscarUserID (Integer id) throws SQLException {
+        Usuario usuarioBusca = ControleUsuario.buscarUsuarioId(id);
+        System.out.println(usuarioBusca);
+    }
+
+    public void buscarUserApelido (String apelido) throws SQLException {
+        Usuario usuarioBusca = ControleUsuario.buscarUsuarioApelido(apelido);
+        System.out.println(usuarioBusca);
+    }
+
+    public void buscarMestreId (Integer id) throws SQLException {
+        Mestre mestreBusca = ControleMestre.buscarMestreId(id);
+        System.out.println(mestreBusca);
+    }
+
+    public void buscarMestreApelido (String apelido) throws SQLException {
+        Mestre mestreBusca = ControleMestre.buscarMestreApelido(apelido);
+        System.out.println(mestreBusca);
+    }
+
+    public void buscarJogadorId (Integer id) throws SQLException {
+        Jogador jogadorBusca = ControleJogador.buscarJogadorId(id);
+        System.out.println(jogadorBusca);
+    }
+
+    public void buscarJogadorApelido (String apelido) throws SQLException {
+        Jogador jogadorBusca = ControleJogador.buscarJogadorApelido(apelido);
+        System.out.println(jogadorBusca);
+    }
+
+    public void buscarMesaId (Integer id) throws SQLException {
+        Mesa mesaBusca = ControleMesa.buscarMesaId(id);
+        System.out.println(mesaBusca);
+    }
+    public void buscarSistemaId (Integer id) throws SQLException {
+        SistemaRPG sistemaBusca = ControleSistemaRPG.buscarSistemaID(id);
+        System.out.println(sistemaBusca);
+    }
+
 
 }

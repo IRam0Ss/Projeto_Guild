@@ -60,6 +60,36 @@ public class ControleSistemaRPG {
 
     }
 
+    public static SistemaRPG buscarSistemaID(Integer id_sistema) throws SQLException {
+        Connection conexao = ConnectionFactory.getConnection();
+        String buscarSistema = "SELECT * FROM sistema_rpg WHERE id_sistema = ?";
+
+        PreparedStatement stmt = conexao.prepareStatement(buscarSistema);
+        stmt.setInt(1, id_sistema);
+
+        ResultSet resultado = stmt.executeQuery();
+
+        SistemaRPG sistemaEncontrado;
+
+        if (resultado.next()) {
+            String nome_sistema = resultado.getString("nome_sistema");
+            String tipo_dado = resultado.getString("tipo_dado");
+            String descricao = resultado.getString("descricao");
+
+            sistemaEncontrado = new SistemaRPG(id_sistema, nome_sistema,tipo_dado,descricao);
+
+            stmt.close();
+            conexao.close();
+
+            return sistemaEncontrado;
+        }else{
+            System.out.println("sistema nao encontrado");
+            stmt.close();
+            conexao.close();
+            return null;
+        }
+    }
+
     public static void removerSistema(SistemaRPG sistema) throws SQLException {
         Connection conexao = ConnectionFactory.getConnection();
 

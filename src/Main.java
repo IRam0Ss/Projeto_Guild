@@ -13,7 +13,7 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         int opcaoUsuario=0;
-
+/*
         do{
             System.out.println("----- ----- ----- MENU ----- ----- -----");
             System.out.println("1. Menu de Usuario (cadastro, remocao, consultas)");
@@ -97,6 +97,6 @@ public class Main {
             }
 
         }while (opcaoUsuario != 0);
-
+*/
     }
 }
